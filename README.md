@@ -7,31 +7,35 @@ Novemberists
 
 ## MVP
 
- - [] Requirements
+README2-POF
+ - [ ] Requirements
+
 
      - [ ] Express Web Server
 
      - [X] MySql Data Base
      
-     - [] ORM
+     - [ ] ORM
 
-     - [] Retrieve (GET)
+     - [ ] Retrieve (GET)
 
-     - [] Add data (POST)
+     - [ ] Add data (POST)
 
-     - [] New technology
+     - [ ] New technology
 
      - [x] Frontend UI
 
-     - [] MVC structure
+     - [ ] MVC structure
 
-     - [] Protect sensitive information
+     - [ ] Protect sensitive information
       
 - [x] Application
 
-     - [ ] app
+     - [ ] Record Batter stats
      
-     - [ ] app
+     - [ ] User input innings
+
+     - [ ] User select teams
 
     
 
@@ -59,7 +63,7 @@ Novemberists
   - [Express-Handlebars](https://www.npmjs.com/package/handlebars)
   
   
-  - [Express-handlebars]()
+  - [Express-handlebars](https://www.npmjs.com/package/express-handlebars)
   
  
   
