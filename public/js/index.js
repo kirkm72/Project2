@@ -97,3 +97,20 @@ var handleDeleteBtnClick = function() {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+
+let mainPage = $('body');
+
+        const backgrounds = new Array( //array of background images
+            'url(../img/diamondEmpty.jpg)'
+            , 'url(../img/diamond1stBase.jpg)'
+            , 'url(../img/diamond2ndBase.jpg)'
+            , 'url(../img/diamond3rdBase.jpg)'
+        );
+        mainPage.css('background-image', backgrounds[0] + "top center no-repeat" );
+        let current = 0; //resets base indicator to empty at start of inning
+
+        $("#advance").on("click", function () { // Button to advance runner. Change id once integrated to main.
+            mainPage.css('background-image', backgrounds[current]);
+            current++; //no need for logic to keep the baserunner indicator with bases loaded as current increments beyond
+            // the array length and will not change the image. Image change will occur when inning changes side.
+        });
