@@ -119,8 +119,7 @@ let mainPage = $('body');
         mainPage.css('background-image', backgrounds[0] + "top center no-repeat" );
         let current = 0; //resets base indicator to empty at start of inning
 
-        $("#advance").on("click", function () { 
-            mainPage.css('background-image', backgrounds[current]);
-            current++; 
-            
+        $("#advance").on("click", function () { // Button to advance runner. Change id once integrated to main.
+          current++;  
+          mainPage.css('background-image', backgrounds[current]);
         });
