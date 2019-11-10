@@ -111,10 +111,10 @@ $exampleList.on("click", ".delete", handleDeleteBtnClick);
 let mainPage = $('body');
 
         const backgrounds = new Array( //array of background images
-            'url(../img/diamondEmpty.jpg)'
-            , 'url(../img/diamond1stBase.jpg)'
-            , 'url(../img/diamond2ndBase.jpg)'
-            , 'url(../img/diamond3rdBase.jpg)'
+            'url(../images/diamondEmpty.jpg)'
+            , 'url(../images/diamond1stBase.jpg)'
+            , 'url(../images/diamond2ndBase.jpg)'
+            , 'url(../images/diamond3rdBase.jpg)'
         );
         mainPage.css('background-image', backgrounds[0] + "top center no-repeat" );
         let current = 0; //resets base indicator to empty at start of inning
