@@ -5,3 +5,6 @@ body { /*This CSS entry needs to be present in order to get background picture o
 .list-group-item {
   line-height: 2.5;
 }
+input[type=number]{
+  width: 40px;
+} 
