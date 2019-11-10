@@ -120,7 +120,8 @@ let mainPage = $('body');
         let current = 0; //resets base indicator to empty at start of inning
 
         $("#advance").on("click", function () { // Button to advance runner. Change id once integrated to main.
-            mainPage.css('background-image', backgrounds[current]);
-            current++; //no need for logic to keep the baserunner indicator with bases loaded as current increments beyond
-            // the array length and will not change the image. Image change will occur when inning changes side.
+          current++;  
+          mainPage.css('background-image', backgrounds[current]);
+          //no need for logic to keep the baserunner indicator with bases loaded as current increments beyond
+          // the array length and will not change the image. Image change will occur when inning changes side.
         });
