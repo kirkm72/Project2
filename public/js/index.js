@@ -108,18 +108,18 @@ var handleDeleteBtnClick = function () {
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
-let mainPage = $('body');
+let mainPage = $("body");
 
-const backgrounds = new Array( //array of background images
-  'url(../images/diamondEmpty.jpg)'
-  , 'url(../images/diamond1stBase.jpg)'
-  , 'url(../images/diamond2ndBase.jpg)'
-  , 'url(../images/diamond3rdBase.jpg)'
+const backgrounds = new Array(
+  "url(../images/diamondEmpty.jpg)",
+  "url(../images/diamond1stBase.jpg)",
+  "url(../images/diamond2ndBase.jpg)",
+  "url(../images/diamond3rdBase.jpg)"
 );
-mainPage.css('background-image', backgrounds[0] + "top center no-repeat");
+mainPage.css("background-image", backgrounds[0] + "top center no-repeat");
 let current = 0; //resets base indicator to empty at start of inning
 
-$("#advance").on("click", function () { // Button to advance runner. Change id once integrated to main.
+$("#advance").on("click", function() {
   current++;
-  mainPage.css('background-image', backgrounds[current]);
+  mainPage.css("background-image", backgrounds[current]);
 });
