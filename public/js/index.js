@@ -7,6 +7,7 @@ var $exampleList = $("#example-list");
 
 $("#hitbutton").on ("click", function() {
   console.log("hit")
+  
 })
 $("#outbutton").on ("click", function() {
   console.log("out")
@@ -37,8 +38,24 @@ var API = {
       url: "api/examples/" + id,
       type: "DELETE"
     });
+  },
+  getBatter: function(id) {
+    return $.ajax({
+      url: "batter/" + id,
+      type: "get"
+    })
   }
 };
+
+$(".player").on("click", function() {
+ 
+  API.getBatter(this.id).then(function(data){
+    $("#batterbox").append(data)
+    
+  })
+  
+})
+
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function() {

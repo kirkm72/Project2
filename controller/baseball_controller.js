@@ -19,7 +19,7 @@ router.route("/batter/:id").get(function(req, res) {
       players: data
     };
     console.log(playersObj);
-    res.render("index", playersObj);
+    res.render("./partials/batter/batter", playersObj);
   });
 });
 

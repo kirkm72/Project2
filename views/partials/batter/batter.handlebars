@@ -1,4 +1,8 @@
-
+   <ul>
+      {{#each players}}
+          {{> batter/batter}}
+      
+    
 
 <div class="card w-75" style="max-width: 250px;" data-id="{{player_id}}">
   <div class="card-body">
@@ -10,5 +14,6 @@
     <a href="#" class="btn btn-primary" id = "outbutton">OUT</a>
   </div>
 </div>
-
+{{/each}}
+</ul>
 
