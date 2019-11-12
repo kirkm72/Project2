@@ -13,4 +13,14 @@ router.route("/").get(function(req, res) {
   });
 });
 
+router.route("/batter/:id").get(function(req, res) {
+  baseball.selectBatter(req.params.id, function(data) {
+    let playersObj = {
+      players: data
+    };
+    console.log(playersObj);
+    res.render("index", playersObj);
+  });
+});
+
 module.exports = router;
