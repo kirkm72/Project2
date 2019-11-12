@@ -48,12 +48,9 @@ var API = {
 };
 
 $(".player").on("click", function() {
- 
   API.getBatter(this.id).then(function(data){
-    $("#batterbox").append(data)
-    
-  })
-  
+    $("#batterbox").append(data)   
+  }) 
 })
 
 
