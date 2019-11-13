@@ -1,5 +1,4 @@
 body { /*This CSS entry needs to be present in order to get background picture on initial page load*/
-
   background: url(../images/diamondEmpty.jpg) top center no-repeat;
 }
 
