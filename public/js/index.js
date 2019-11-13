@@ -110,7 +110,7 @@ $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
 let mainPage = $("body");
 
-const backgrounds = new Array(
+const backgrounds = new Array( //array of background images
   "url(../images/diamondEmpty.jpg)",
   "url(../images/diamond1stBase.jpg)",
   "url(../images/diamond2ndBase.jpg)",
@@ -119,7 +119,9 @@ const backgrounds = new Array(
 mainPage.css("background-image", backgrounds[0] + "top center no-repeat");
 let current = 0; //resets base indicator to empty at start of inning
 
-$("#advance").on("click", function() {
+$("#advance").on("click", function () { // Button to advance runner. Change id once integrated to main.
   current++;
   mainPage.css("background-image", backgrounds[current]);
+  //no need for logic to keep the baserunner indicator with bases loaded as current increments beyond
+  // the array length and will not change the image. Image change will occur when inning changes side.
 });
