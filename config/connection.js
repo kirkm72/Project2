@@ -1,4 +1,5 @@
-var mysql = require("mysql");
+
+const mysql = require("mysql");
 
 var connection = mysql.createConnection({
   host: "localhost",
