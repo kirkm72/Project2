@@ -5,6 +5,7 @@ var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
 
+
 $("#hitbutton").on ("click", function() {
   console.log("hit")
   
@@ -17,7 +18,7 @@ $("#outbutton").on ("click", function() {
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  saveExample: function (example) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -27,13 +28,13 @@ var API = {
       data: JSON.stringify(example)
     });
   },
-  getExamples: function() {
+  getExamples: function () {
     return $.ajax({
       url: "api/examples",
       type: "GET"
     });
   },
-  deleteExample: function(id) {
+  deleteExample: function (id) {
     return $.ajax({
       url: "api/examples/" + id,
       type: "DELETE"
@@ -55,9 +56,9 @@ $(".player").on("click", function() {
 
 
 // refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
+var refreshExamples = function () {
+  API.getExamples().then(function (data) {
+    var $examples = data.map(function (example) {
       var $a = $("<a>")
         .text(example.text)
         .attr("href", "/example/" + example.id);
@@ -85,7 +86,7 @@ var refreshExamples = function() {
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
+var handleFormSubmit = function (event) {
   event.preventDefault();
 
   var example = {
@@ -98,7 +99,7 @@ var handleFormSubmit = function(event) {
     return;
   }
 
-  API.saveExample(example).then(function() {
+  API.saveExample(example).then(function () {
     refreshExamples();
   });
 
@@ -108,12 +109,12 @@ var handleFormSubmit = function(event) {
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
+var handleDeleteBtnClick = function () {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  API.deleteExample(idToDelete).then(function() {
+  API.deleteExample(idToDelete).then(function () {
     refreshExamples();
   });
 };
@@ -122,20 +123,20 @@ var handleDeleteBtnClick = function() {
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
-let mainPage = $('body');
+let mainPage = $("body");
 
-        const backgrounds = new Array( //array of background images
-            'url(../images/diamondEmpty.jpg)'
-            , 'url(../images/diamond1stBase.jpg)'
-            , 'url(../images/diamond2ndBase.jpg)'
-            , 'url(../images/diamond3rdBase.jpg)'
-        );
-        mainPage.css('background-image', backgrounds[0] + "top center no-repeat" );
-        let current = 0; //resets base indicator to empty at start of inning
+const backgrounds = new Array( //array of background images
+  "url(../images/diamondEmpty.jpg)",
+  "url(../images/diamond1stBase.jpg)",
+  "url(../images/diamond2ndBase.jpg)",
+  "url(../images/diamond3rdBase.jpg)"
+);
+mainPage.css("background-image", backgrounds[0] + "top center no-repeat");
+let current = 0; //resets base indicator to empty at start of inning
 
-        $("#advance").on("click", function () { // Button to advance runner. Change id once integrated to main.
-          current++;  
-          mainPage.css('background-image', backgrounds[current]);
-          //no need for logic to keep the baserunner indicator with bases loaded as current increments beyond
-          // the array length and will not change the image. Image change will occur when inning changes side.
-        });
+$("#advance").on("click", function () { // Button to advance runner. Change id once integrated to main.
+  current++;
+  mainPage.css("background-image", backgrounds[current]);
+  //no need for logic to keep the baserunner indicator with bases loaded as current increments beyond
+  // the array length and will not change the image. Image change will occur when inning changes side.
+});

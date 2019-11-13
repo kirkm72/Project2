@@ -23,7 +23,3 @@ input[type=number]::-webkit-outer-spin-button {
   font-family:'digital-clock-font';
   src: url('\public\fonts\digital-7\digital-7.ttf');
  }
-
-  width: 40px;
-} 
-
