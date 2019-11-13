@@ -1,9 +1,9 @@
 <div class="container">
-        <div class="card" style="width: 60rem;">
-            <div class="card-header">
-              <img class="center" src=https://i.imgur.com/PVEmUZN.gif height="50" width="600" alt="and beer" /> Welcome to the Ballpark!
+        <div class="card" style="width: 50rem;">
+            <div class="card-header" id="sbheader">
+              <img class="center" src=https://i.imgur.com/PVEmUZN.gif height="50" width="600" alt="and beer" /> HEB: #1 in TX!
             </div>
-            <table class="card-table table">
+            <table class="card-table table" id="scoreboard">
               <thead>
                 <tr>
                   <th scope="col">Team</th>
@@ -21,7 +21,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>visTeam</td>
+                  <td id={{visTeam}}></td>
                   <td><form><input type="number" class="visScore" id="visScore1st"></form></td>
                   <td><form><input type="number" class="visScore" id="visScore2nd"></form></td>
                   <td><form><input type="number" class="visScore" id="viscore3rd"></form></td>
@@ -68,7 +68,6 @@
     $('#resultHome').text(homeTotalSum);
    });
 
-   /*something 
 
 </script>
 
