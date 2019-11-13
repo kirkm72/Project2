@@ -6,11 +6,11 @@ var $exampleList = $("#example-list");
 
 
 
-$("#hitbutton").on ("click", function() {
+$("#hitbutton").on("click", function() {
   console.log("hit")
   
 })
-$("#outbutton").on ("click", function() {
+$("#outbutton").on("click", function() {
   console.log("out")
 })
 
@@ -49,6 +49,7 @@ var API = {
 };
 
 $(".player").on("click", function() {
+    $("#batterbox").empty()
   API.getBatter(this.id).then(function(data){
     $("#batterbox").append(data)   
   }) 
