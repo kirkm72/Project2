@@ -80,20 +80,27 @@
 <div class="row">
   <div class="col-md-3 offset-md-1">
     <h1>Home Team</h1>
-    <ul>
+    <ul id="home-team">
       {{#each teams}}
           {{> teams/homeTeam}}
       {{/each}}
     </ul>
+    <div id="home-roster"></div>
+    
+    
   </div>
   
   <div class="col-md-3 offset-md-5">
     <h1>Away Team</h1>
-    <ul>
+    <ul >
       {{#each teams}}
-          {{> teams/homeTeam}}
+          {{> teams/awayTeam}}
       {{/each}}
     </ul>
+
+    <div id="away-roster"></div>
+
+    
 
   </div>
 

@@ -12,12 +12,100 @@
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
   <title>Baseball Scorecard</title>
 </head>
 
 <body>
- {{{body}}}
+  {{{body}}}
 </body>
+
+<script>
+  $(document).ready(() => {
+
+    $(document).on('click', '.home-team-btn', function () {
+      $('#home-roster').empty();
+      let
+        id = $(this).data('id')
+
+      $.ajax(`/api/home/team/${id}`, {
+        type: 'GET'
+
+      }).then(
+         function(data) {
+
+
+           data.reduce(function(table, row){
+             $(`<tr>
+                <th scope="row">${row.jersey_number}</th>
+                <td>${row.player_name}</td>
+                <td>${row.position}</td>
+                <td>${row.handness}</td>
+                <td>avg</td>
+              </tr>`).appendTo(table);
+
+              return table;
+
+           }, $(`<table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Roster</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Position</th>
+                      <th scope="col">Hand</th>
+                      <th scope="col">Avg</th>
+                    </tr>
+                  </thead>
+                  <tbody id="home-roster"></tbody>
+                </table>`)).appendTo($('#home-roster'))
+        }
+      );
+    });
+
+    $('.away-team-btn').on('click', function () {
+       $('#away-roster').empty();
+      let
+        id = $(this).data('id')
+      console.log(`clicked  ${id}`)
+
+      $.ajax(`/api/away/team/${id}`, {
+        type: 'GET'
+
+      }).then(
+         function(data) {
+
+
+           data.reduce(function(table, row){
+             $(`<tr>
+                <th scope="row">${row.jersey_number}</th>
+                <td>${row.player_name}</td>
+                <td>${row.position}</td>
+                <td>${row.handness}</td>
+                <td>avg</td>
+              </tr>`).appendTo(table);
+
+              return table;
+
+           }, $(`<table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Roster</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Position</th>
+                      <th scope="col">Hand</th>
+                      <th scope="col">Avg</th>
+                    </tr>
+                  </thead>
+                  <tbody id="home-roster"></tbody>
+                </table>`)).appendTo($('#away-roster'))
+        }
+      );
+    });
+  })
+
+
+</script>
+
 
 </html>
