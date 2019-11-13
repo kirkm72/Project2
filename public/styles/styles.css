@@ -19,7 +19,16 @@ input[type=number]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0; 
 }
-@font-face{
-  font-family:'digital-clock-font';
-  src: url('\public\fonts\digital-7\digital-7.ttf');
+
+#scoreboard {
+  line-height: 15px;
+  background-color: rgb(51, 53, 56);
+  color: white;
+ }
+
+ #sbheader{
+  background-image: linear-gradient(to right, blue , red);
+   color: white;
+   font-size: 16pt;
+   font-weight: bolder;
  }
