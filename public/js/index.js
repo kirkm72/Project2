@@ -5,13 +5,15 @@ var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
 
-let $nextPitchBtn = $("#nextPitch");
-let $pitchCount = $("#pitchCount");
-let pitchCount = 0
-$nextPitchBtn.on("click", function () {
-  pitchCount++;
-  $pitchCount.append(pitchCount)
+
+$("#hitbutton").on ("click", function() {
+  console.log("hit")
+  
 })
+$("#outbutton").on ("click", function() {
+  console.log("out")
+})
+
 
 
 // The API object contains methods for each kind of request we'll make
@@ -37,8 +39,21 @@ var API = {
       url: "api/examples/" + id,
       type: "DELETE"
     });
+  },
+  getBatter: function(id) {
+    return $.ajax({
+      url: "batter/" + id,
+      type: "get"
+    })
   }
 };
+
+$(".player").on("click", function() {
+  API.getBatter(this.id).then(function(data){
+    $("#batterbox").append(data)   
+  }) 
+})
+
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function () {
