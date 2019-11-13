@@ -1,15 +1,27 @@
-const connection = require('./connection.js');
+const connection = require("./connection");
 
 const orm = {
   selectAll: (table, cb) => {
     let query = `SELECT * FROM ${table};`;
+
     connection.query(query, function(err, res) {
       if (err) {
         throw err;
       }
 
       cb(res);
-      console.log(res);
+    });
+  },
+
+  selectOne: (table, team_id, cb) => {
+    let query = `SELECT * From ${table} WHERE team_id = '${team_id}'`;
+
+    connection.query(query, function(err, res) {
+      if (err) {
+        throw err;
+      }
+
+      cb(res);
     });
   },
   selectWhere: (table, condition, cb) => {
