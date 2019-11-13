@@ -3,13 +3,14 @@ const orm = require("../config/orm.js");
 
 
 const baseball = {
-  allTeams: function(cb) {
+  allTeams: cb => {
     orm.selectAll("teams", function(res) {
       cb(res);
     });
   },
-  allplayers: function(cb) {
-    orm.selectAll("players", function(res) {
+  allplayers: (team_id, cb) => {
+    orm.selectOne("players", team_id, function(res) {
+      // console.log(res);
       cb(res);
     });
   },
