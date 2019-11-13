@@ -35,4 +35,14 @@ router.route("/api/away/team/:id").get(function(req, res) {
   });
 });
 
+router.route("/batter/:id").get(function(req, res) {
+  baseball.selectBatter(req.params.id, function(data) {
+    let playersObj = {
+      players: data
+    };
+    console.log(playersObj);
+    res.render("./partials/batter/batter", playersObj);
+  });
+});
+
 module.exports = router;
