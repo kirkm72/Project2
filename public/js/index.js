@@ -8,10 +8,12 @@ var $exampleList = $("#example-list");
 
 $("#hitbutton").on("click", function() {
   console.log("hit")
+$("#batterbox").empty()
   
 })
 $("#outbutton").on("click", function() {
   console.log("out")
+  $("#batterbox").empty()
 })
 
 
