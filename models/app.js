@@ -18,6 +18,16 @@ const baseball = {
     orm.selectWhere("players", batterid, function(res) {
       cb(res);
     })
+  },
+  selectHits: function(batterid, cb) {
+    orm.updateHits("players", batterid, function(res) {
+      cb(res);
+    })
+  },
+  selectOuts: function(batterid, cb) {
+    orm.updateOuts("players", batterid, function(res) {
+      cb(res);
+    })
   }
 };
 

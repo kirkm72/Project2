@@ -32,8 +32,25 @@ const orm = {
       }
       cb(res);
     })
+  },
+  updateHits:(table, condition, cb) => {
+    let query = `UPDATE ${table} SET hits = hits +1, atBats = atBats +1 Where player_id = ${condition};`
+    connection.query(query, function(err, res) {
+      if (err) {
+        throw err;
+      }
+      cb(res)
+    })
+  },
+  updateOuts:(table, condition, cb) => {
+    let query = `UPDATE ${table} SET atBats = atBats +1 Where player_id = ${condition}`
+    connection.query(query, function(err, res) {
+      if (err) {
+        throw err;
+      }
+      cb(res)
+    })
   }
-  
 };
 
 module.exports = orm;
