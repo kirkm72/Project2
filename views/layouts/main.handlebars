@@ -36,9 +36,8 @@
         type: 'GET'
 
       }).then(
-        function (data) {
-
-
+         function(data) {
+         
            data.reduce(function(table, row){
              $(`<tr>
                 <th scope="row" class="player" id="${row.player_id}">${row.jersey_number}</th>
@@ -106,7 +105,6 @@
         }
       );
     });
-
   })
 </script>
 </html>
