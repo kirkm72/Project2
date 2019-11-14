@@ -20,7 +20,9 @@ router.route("/api/home/team/:id").get(function(req, res) {
       homePlayers: data
     };
 
+
     res.json(playersObj.homePlayers);
+
   });
 });
 
@@ -32,6 +34,14 @@ router.route("/api/away/team/:id").get(function(req, res) {
     };
 
     res.json(playersObj.awayPlayers);
+
+  });
+});
+
+router.route("/api/matches").post(function(req, res) {
+  baseball.createMatch(home, away, loc, function(result) {
+    
+    res.json({ id: result.insertId });
   });
 });
 
