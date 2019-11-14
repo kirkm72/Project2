@@ -1,4 +1,5 @@
 
+
 function match(homeTeam, awayTeam, location, startMatch) {
   /*Post to matches in baseballdb  */
   let home_team_id = 1
@@ -34,3 +35,7 @@ function startInning(){
     inning ++;
 }
 
+$(document).on("click", '#start-match',function(){
+    console.log("game started")
+    startInning()
+})
