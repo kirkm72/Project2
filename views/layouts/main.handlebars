@@ -23,14 +23,13 @@
   {{{body}}}
 </body>
 
+
 <script>
   $(document).ready(() => {
-
 
     $('.home-team-btn').on('click', function () {
       $('#home-roster').empty();
       let id = $(this).data('id');
-      
       $(`.${id}`).hide();
       $("#home-team").hide();
 
@@ -85,7 +84,8 @@
       $('#away-roster').empty();
       let
         id = $(this).data('id')
-     
+       
+
       $(`.${id}`).hide();
       $('#away-team').hide();
 
@@ -161,6 +161,14 @@
       $('#batter-card').hide();
       console.log('hit');
       console.log(player_id);
+      $.ajax({
+      url: "batter/hits/" + player_id,
+      type: "post"
+    }).then(function(data){
+        console.log(data)
+    })
+
+      
 
       // avdance base
 
@@ -175,6 +183,13 @@
       $('#batter-card').hide();
       console.log('out');
       console.log(player_id);
+
+      $.ajax({
+      url: "batter/outs/" + player_id,
+      type: "post"
+    }).then(function(data){
+        console.log(data)
+    })
 
       //out game logic
 
