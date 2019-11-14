@@ -11,9 +11,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+  {{!-- Game Logic --}}
+ 
+  {{!-- <script src="../../public/js/game.js"></script> --}}
+
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
   <title>Baseball Scorecard</title>
-  <link rel="icon" type="image/jpg" href="./images/baseball_favicon.jpg">
+  {{!-- <link rel="icon" type="image/jpg" img-src="./images/baseball_favicon.jpg"> --}}
 </head>
 
 <body>
@@ -37,13 +41,14 @@
         function (data) {
 
 
-          data.reduce(function (table, row) {
-            $(`<tr>
-                <th scope="row">${row.jersey_number}</th>
+           data.reduce(function(table, row){
+             $(`<tr>
+                <th scope="row" class="player" id="${row.player_id}">${row.jersey_number}</th>
                 <td>${row.player_name}</td>
                 <td>${row.position}</td>
                 <td>${row.handness}</td>
-                <td>avg</td>
+                <td>${row.bat_avg}</td>
+                <td><button class="player" id ="${row.player_id}">Bat</button></td>
               </tr>`).appendTo(table);
 
             return table;
@@ -77,15 +82,13 @@
 
       }).then(
         function (data) {
-
-
           data.reduce(function (table, row) {
             $(`<tr>
                 <th scope="row">${row.jersey_number}</th>
                 <td>${row.player_name}</td>
                 <td>${row.position}</td>
                 <td>${row.handness}</td>
-                <td>avg</td>
+                <td>${row.bat_avg}</td>
               </tr>`).appendTo(table);
 
             return table;
@@ -105,10 +108,7 @@
         }
       );
     });
+
   })
-
-
 </script>
-
-
 </html>

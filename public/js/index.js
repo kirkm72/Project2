@@ -9,54 +9,55 @@ var mainPage = $("body");
 //mainPage.css("background-image", backgrounds[0] + "top center no-repeat");
 let current = 0; //resets base indicator to empty at start of inning
 
-$("#hitbutton").on("click", function () {
-  console.log("hit");
-  current++;
-  mainPage.css("background-image", backgrounds[current]);
-  //no need for logic to keep the baserunner indicator with bases loaded as current increments beyond
-  // the array length and will not change the image. Image change will occur when inning changes side
-  // remove comment form line 9 to accommodate inning change.
-});
-$("#outbutton").on("click", function () {
-  console.log("out");
-});
-
+let ids = [];
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function (example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function () {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function (id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  },
+
   getBatter: function (id) {
     return $.ajax({
       url: "batter/" + id,
       type: "get"
-    })
+    });
+  },
+  updateHits: function (id) {
+    return $.ajax({
+      url: "batter/hits/" + id,
+      type: "get"
+    });
+  },
+  updateOuts: function (id) {
+    return $.ajax({
+      url: "batter/outs/" + id,
+      type: "get"
+    });
   }
 };
 
+$("#hitbutton").on("click", function () {
+  console.log("hit");
+  current++;
+  mainPage.css("background-image", backgrounds[current]);
+  $("#batterbox").empty()
+  //no need for logic to keep the baserunner indicator with bases loaded as current increments beyond
+  // the array length and will not change the image. Image change will occur when inning changes side
+  API.updateHits(ids[ids.length - 1]).then(function (data) {
+    console.log(data);
+  })
+});
+$("#outbutton").on("click", function () {
+  console.log("out");
+  $("#batterbox").empty();
+  API.updateOuts(ids[ids.length - 1]).then(function (data) {
+    console.log(data);
+  });
+});
+
 $(".player").on("click", function () {
+  $("#batterbox").empty();
+  ids.push(this.id);
   API.getBatter(this.id).then(function (data) {
-    $("#batterbox").append(data)
+    $("#batterbox").append(data);
   });
 });
 
@@ -82,4 +83,3 @@ var handleFormSubmit = function (event) {
   $exampleText.val("");
   $exampleDescription.val("");
 };
-
