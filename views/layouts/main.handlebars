@@ -3,10 +3,8 @@
 
 <head>
   <meta charset="utf-8">
-  <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
@@ -15,6 +13,7 @@
 
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
   <title>Baseball Scorecard</title>
+  <link rel="icon" type="image/jpg" href="./images/baseball_favicon.jpg">
 </head>
 
 <body>
@@ -26,18 +25,20 @@
 
     $(document).on('click', '.home-team-btn', function () {
       $('#home-roster').empty();
-      let
-        id = $(this).data('id')
+      let id = $(this).data('id');
+      console.log(`clicked  ${id}`);
+      $(`.${id}`).hide();
+      $("#home-team").hide();
 
       $.ajax(`/api/home/team/${id}`, {
         type: 'GET'
 
       }).then(
-         function(data) {
+        function (data) {
 
 
-           data.reduce(function(table, row){
-             $(`<tr>
+          data.reduce(function (table, row) {
+            $(`<tr>
                 <th scope="row">${row.jersey_number}</th>
                 <td>${row.player_name}</td>
                 <td>${row.position}</td>
@@ -45,9 +46,9 @@
                 <td>avg</td>
               </tr>`).appendTo(table);
 
-              return table;
+            return table;
 
-           }, $(`<table class="table">
+          }, $(`<table class="table">
                   <thead>
                     <tr>
                       <th scope="col">Roster</th>
@@ -64,20 +65,22 @@
     });
 
     $('.away-team-btn').on('click', function () {
-       $('#away-roster').empty();
+      $('#away-roster').empty();
       let
         id = $(this).data('id')
-      console.log(`clicked  ${id}`)
+      console.log(`clicked  ${id}`);
+      $(`.${id}`).hide();
+      $('#away-team').hide();
 
       $.ajax(`/api/away/team/${id}`, {
         type: 'GET'
 
       }).then(
-         function(data) {
+        function (data) {
 
 
-           data.reduce(function(table, row){
-             $(`<tr>
+          data.reduce(function (table, row) {
+            $(`<tr>
                 <th scope="row">${row.jersey_number}</th>
                 <td>${row.player_name}</td>
                 <td>${row.position}</td>
@@ -85,9 +88,9 @@
                 <td>avg</td>
               </tr>`).appendTo(table);
 
-              return table;
+            return table;
 
-           }, $(`<table class="table">
+          }, $(`<table class="table">
                   <thead>
                     <tr>
                       <th scope="col">Roster</th>
