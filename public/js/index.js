@@ -43,7 +43,7 @@ $("#hitbutton").on("click", function () {
   // the array length and will not change the image. Image change will occur when inning changes side
   API.updateHits(ids[ids.length - 1]).then(function (data) {
     console.log(data);
-  })
+  });
 });
 $("#outbutton").on("click", function () {
   console.log("out");
