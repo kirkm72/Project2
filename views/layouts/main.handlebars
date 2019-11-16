@@ -11,24 +11,46 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  {{!-- Game Logic --}}
+ 
+
  
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
   <title>Baseball Scorecard</title>
-  <link rel="icon" type="image/jpg" img-src="./images/baseball_favicon.jpg">
+  <script src="/js/game.js"></script>
 </head>
 
 <body>
   {{{body}}}
 </body>
 
+
+<script src="/js/game.js"></script>
+
 <script>
   $(document).ready(() => {
 
-    $(document).on('click', '.home-team-btn', function () {
+    let 
+      home_team_id,
+      away_team_id;
+
+    const backgrounds = new Array( //array of background images
+    "url(../images/diamondEmpty.jpg)",
+    "url(../images/diamond1stBase.jpg)",
+    "url(../images/diamond2ndBase.jpg)",
+    "url(../images/diamond3rdBase.jpg)"
+  );
+
+var mainPage = $("body");
+//mainPage.css("background-image", backgrounds[0] + "top center no-repeat");
+let current = 0; //resets base indicator to empty at start of inning
+
+$('#batter-card').hide();
+
+
+    $('.home-team-btn').on('click', function () {
       $('#home-roster').empty();
-      let id = $(this).data('id');
-      console.log(`clicked  ${id}`);
+      let id = $(this).data('home-id');
+      home_team_id = id;
       $(`.${id}`).hide();
       $("#home-team").hide();
 
@@ -45,10 +67,21 @@
                 <td>${row.position}</td>
                 <td>${row.handness}</td>
                 <td>${row.bat_avg}</td>
-                <td><button class="player" id ="${row.player_id}">Bat</button></td>
+
+                <td><button class="player-at-bat-btn" id="ht-player-${row.player_id}" disable="false"
+
+                  data-name="${row.player_name}"
+                  data-pos="${row.position}"
+                  data-ros="${row.jersey_number}"
+                  data-hand="${row.handness}"
+                  data-bat_avg="${row.bat_avg}"
+                  data-player_id="${row.player_id}">Bat</button></td>
               </tr>`).appendTo(table);
 
             return table;
+
+            
+
 
           }, $(`<table class="table">
                   <thead>
@@ -62,6 +95,8 @@
                   </thead>
                   <tbody id="home-roster"></tbody>
                 </table>`)).appendTo($('#home-roster'))
+
+         
         }
       );
     });
@@ -69,8 +104,9 @@
     $('.away-team-btn').on('click', function () {
       $('#away-roster').empty();
       let
-        id = $(this).data('id')
-      console.log(`clicked  ${id}`);
+        id = $(this).data('away-id');
+      away_team_id = id;
+
       $(`.${id}`).hide();
       $('#away-team').hide();
 
@@ -81,11 +117,22 @@
         function (data) {
           data.reduce(function (table, row) {
             $(`<tr>
+
+                <td><button class="player-at-bat-btn" id="at-player-${row.player_id}" disable="false"
+
+                  data-name="${row.player_name}"
+                  data-pos="${row.position}"
+                  data-ros="${row.jersey_number}"
+                  data-hand="${row.handness}"
+                  data-bat_avg="${row.bat_avg}"
+                  data-player_id="${row.player_id}">Bat</button></td>
+                </td>
                 <th scope="row">${row.jersey_number}</th>
                 <td>${row.player_name}</td>
                 <td>${row.position}</td>
                 <td>${row.handness}</td>
                 <td>${row.bat_avg}</td>
+                
               </tr>`).appendTo(table);
 
             return table;
@@ -93,6 +140,7 @@
           }, $(`<table class="table">
                   <thead>
                     <tr>
+                      <th scope="col"></th>
                       <th scope="col">Roster</th>
                       <th scope="col">Name</th>
                       <th scope="col">Position</th>
@@ -105,6 +153,105 @@
         }
       );
     });
+
+
+    $(document).on('click', '.player-at-bat-btn', function(e) {
+      let isAtBat =  e.target.getAttribute('disable');
+      console.log(isAtBat)
+     if (isAtBat === 'false'){
+        let dataSet = $(this)[0].dataset;
+        $('#batter-card').show();
+        $('#batter-card-name').text(dataSet['name']);
+        $('#batter-card-bat_avg').text(dataSet['bat_avg']);
+        $('#batter-card-roster').text(dataSet['ros']);
+        $('#batter-card-pos').text(`Position: ${dataSet['pos']}`);
+        $('#batter-card-hand').text(`Bats: ${dataSet['hand']}`);
+        $('#batter-card').attr('data-player_id',`${dataSet['player_id']}`);
+        $(this)
+          .attr('disable', true)
+          .css("color", "white");
+      
+     }
+      //e.currentTarget.attributes['disable'] = true;
+      
+
+    })
+
+    $('.hit-btn').on('click', function(){ 
+      current++;
+      mainPage.css("background-image", backgrounds[current]);
+      let player_id = $(this).parent()[0].dataset['player_id'];
+      $('#batter-card').hide();
+      console.log('hit');
+      console.log(player_id);
+
+      $.ajax({
+      url: "batter/hits/" + player_id,
+      type: "post"
+    }).then(function(data){
+        console.log(data)
+    })
+
+      
+
+
+      // avdance base
+
+      // update database
+
+    });
+     
+
+    $('.out-btn').on('click', function(){ 
+      let player_id = $(this).parent()[0].dataset['player_id'];
+      $('#batter-card').hide();
+      console.log('out');
+      console.log(player_id);
+
+
+      $.ajax({
+      url: "batter/outs/" + player_id,
+      type: "post"
+    }).then(function(data){
+        console.log(data)
+    })
+
+
+      //out game logic
+
+      //update data base
+
+
+    });
+
+   
+    
+    
+    $(document).on("click", '#start-match',function(){
+    console.log("game started");
+    match(home_team_id, away_team_id);
+})
   })
+
+
+  //Sum up the scores on the scoreboard
+
+  var visTotalSum = 0;
+  $('.visScore').on('change', function () {
+    var currentValue = parseInt($(this).val())
+    visTotalSum += currentValue
+    $('#resultVis').text(visTotalSum);
+  });
+
+  var homeTotalSum = 0;
+  $('.homeScore').on('change', function () {
+    var currentValue = parseInt($(this).val())
+    homeTotalSum += currentValue
+    $('#resultHome').text(homeTotalSum);
+  });
+
 </script>
+
+
+
 </html>
