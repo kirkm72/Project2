@@ -1,5 +1,19 @@
-<li>
+{{!-- <li>
 	<button class="home-team-btn {{team_id}}" data-home-id="{{team_id}}">
 		{{team_name}}
 	</button>
-</li>
+</li> --}}
+{{!-- <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Select Team
+  </button> --}}
+{{!-- {{#each team_id}} --}}
+<div class="dropdown-menu home-team-btn" aria-labelledby="dropdownMenu2">
+
+  <button class="home-team-btn dropdown-item {{team_id}}" data-home-id="{{team_id}}"
+    type="button">{{team_name}}</button>
+  
+</div>
+{{!-- {{/each}} --}}
+
+{{!-- </div> --}}
