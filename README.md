@@ -61,7 +61,7 @@ Novemberists
 
   - [LucidChart](https://www.lucidchart.com/)
 
-  - [KanBan](https://github.com/danshandle/Project2/projects/1)
+ 63ae2a72bb47329005dc21659014bfd950bb832f
 
 ## Developmental features
 - [ ] User authization

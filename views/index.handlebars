@@ -105,7 +105,7 @@
           <p>Only 9 AtBats per inning, One Pitcher One Game</p>
           <p>Eephus Pitch Only</p>
 
-          <button type="button" class="btn btn-primary" id="start-match">Start Game</button>
+          <button type="button" class="btn btn-primary" id ="start-match">Start Match</button>
 
         </div>
       </div>
@@ -115,63 +115,66 @@
     <div class="col-md-3">
 
       <h1>Home Team</h1>
-      {{!-- <ul id="home-team">
-        {{#each teams}}
-          {{> teams/homeTeam}}
-        {{/each}}
-      </ul> --}}
+      
+      
 
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Select Team
+      <div class="dropdown" id="home-team-drop">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="home-team-roster" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Select Home Team
         </button>
-        {{#each teams}}
-          {{> teams/homeTeam}}
-        {{/each}}
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <ul id="home-team">
+            {{#each teams}}
+                {{> teams/homeTeam}}
+              {{/each}}
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+    <div class="offset-md-7 float-right">
+      <h1>Away Team</h1>
+      
+      <div class="dropdown" id="away-team-drop">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="away-team-roster" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Select Away Team
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <ul id="away-team">
+            {{#each teams}}
+                {{> teams/awayTeam}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
 
       </div>
 
 
-
-      <div class="offset-md-7 float-right">
-        <h1>Away Team</h1>
-        <ul id="away-team">
-          {{#each teams}}
-          {{> teams/awayTeam}}
-          {{/each}}
-        </ul>
-
-      </div>
+  <div class="row" id="roster-and-batter">
+    <div class="col-md-4" id="homediv">
+      <div class="table-wrapper-scroll-y my-custom-scrollbar" id="home-roster"></div>
     </div>
 
-    <div class="row fixed-bottom" id="roster-and-batter">
-      <div class="col-md-4" id="homediv">
-
-        <div id="home-roster"></div>
-
-      </div>
-
-      <div class="col-md-2 offset-md-1 align-bottom">
-        <div class="card border-dark mb-3 sticky-bottom" id="batter-card" style="max-width: 18rem;">
-          <div class="card-header" id="batter-card-name"></div>
-          <div class="card-body text-dark">
-            <h4 class="card-title" id="batter-card-bat_avg">Avg:</h4>
-            <h5 class="card-title" id="batter-card-roster">Num:</h5>
-            <h5 class="card-title" id="batter-card-pos">Pos:</h5>
-            <h5 class="card-title" id="batter-card-hand">Bats:</h5>
-          </div>
+    <div class="col-md-2 offset-md-1 align-bottom">
+      <div class="card border-dark mb-3 sticky-bottom" id="batter-card" style="max-width: 18rem;">
+        <div class="card-header" id="batter-card-roster"></div>
+        <div class="card-body text-dark">
+          <h4 class="card-title" id="batter-card-name"></h4>
+          <h5 class="card-title" id="batter-card-bat_avg"></h5>
+          <h5 class="card-title" id="batter-card-pos"></h5>
+          <h5 class="card-title" id="batter-card-hand"></h5>
+         </div> 
           <button class="hit-btn">Hit</button>
           <button class="out-btn">Out</button>
         </div>
       </div>
 
-      <div class="col-md-4 offset-md-1" id="awaydiv">
-
-
-
-        <div id="away-roster"></div>
-
-      </div>
+    <div class="col-md-4 offset-md-1" id="awaydiv">
+      <div class="table-wrapper-scroll-y my-custom-scrollbar" id="away-roster"></div>
     </div>
-  </div>
+  </div>  
+</div>
+
+
+
