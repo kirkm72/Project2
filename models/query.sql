@@ -1,4 +1,4 @@
-USE ks41eh1eo6bajxow;
+USE baseballdb;
 SELECT 
 p.player_id, 
 player_name, 

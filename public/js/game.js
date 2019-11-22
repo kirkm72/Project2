@@ -254,13 +254,17 @@ $(document).ready(() => {
     if ($(this).text() === "Start Match") {
 
 
+
       startMatch(inning).then(function() { //async function
         console.log("Match OVER");
       });
 
       
+
       //Resquest gif
-      // let url = `https://api.giphy.com/v1/gifs/search?q=baseball&api_key=${process.env.GIF_KEY}$&limit=10`;
+      // let url = `https://api.giphy.com/v1/gifs/search?q=baseball&api_key=${
+      //   process.env.GIF_KEY
+      // }$&limit=10`;
       // $.ajax({
       //   url,
       //   method: "GET"
@@ -276,6 +280,9 @@ $(document).ready(() => {
         //   });
 
         // }
+
+      // });
+
 
          $(this)
         .attr("disable", true)

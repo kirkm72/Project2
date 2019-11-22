@@ -1,4 +1,3 @@
-USE ks41eh1eo6bajxow;
 INSERT INTO players
 (player_name, jersey_number, position, handness, team_id)
 VALUES 
